@@ -18,7 +18,7 @@ git clone https://github.com/realyutou/AC_2-3_A1_restaurant_list.git
 3. 安裝相關套件：輸入以下指令
 
 ```bash
-  npm install
+npm install
 ```
 
 4. 執行此專案：輸入以下指令
