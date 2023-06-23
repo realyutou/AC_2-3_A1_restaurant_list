@@ -1,7 +1,7 @@
 <!-- search bar -->
 <div class="container search-bar">
   <div class="search-bar-outer">
-    <div class="search-bar-inner mb-2">
+    <div class="search-bar-inner mb-3">
       <form action="/search">
         <h4 class="mb-2">尋找餐廳：</h4>
         <div class="input-group">
@@ -13,7 +13,7 @@
         </div>
       </form>
     </div>
-    <div>
+    <div class="text-end">
       <a href="/restaurants/new" class="btn btn-primary" role="button">新增餐廳</a>
     </div>
   </div>
@@ -41,13 +41,13 @@
               </span>
 
             </div>
-            <div class="card-footer py-3">
-            <a href="/">Edit</a>
-            <a href="/restaurants/{{ this._id }}">Details</a>
-            <button>Delete</button>
+            <div class="card-footer py-3 text-end">
+              <a href="/restaurants/{{ this._id }}/edit" class="d-inline-block pe-3 text-decoration-none">Edit</a>
+              <a href="/restaurants/{{ this._id }}" class="d-inline-block pe-3 text-decoration-none">Details</a>
+              <button>Delete</button>
             </div>
           </div>
-          
+
         </div>
 
         {{/each}}
