@@ -99,6 +99,15 @@ app.post('/restaurants/:id/edit', (req, res) => {
     .catch(error => console.log(error))
 })
 
+// 使用者可以刪除一家餐廳
+app.post('/restaurants/:id/delete', (req, res) => {
+  const id = req.params.id
+  return Restaurant.findById(id)
+    .then(restaurant => restaurant.remove())
+    .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
+})
+
 // 使用者可以依餐廳名稱或類別搜尋特定餐廳
 app.get('/search', (req, res) => {
   const keyword = req.query.keyword
