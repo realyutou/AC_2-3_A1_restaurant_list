@@ -1,7 +1,7 @@
 <!-- search bar -->
 <div class="container search-bar">
   <div class="search-bar-outer">
-    <div class="search-bar-inner">
+    <div class="search-bar-inner mb-2">
       <form action="/search">
         <h4 class="mb-2">尋找餐廳：</h4>
         <div class="input-group">
@@ -13,6 +13,9 @@
         </div>
       </form>
     </div>
+    <div>
+      <a href="/restaurants/new" class="btn btn-primary" role="button">新增餐廳</a>
+    </div>
   </div>
 </div>
 
@@ -22,10 +25,9 @@
     <div class="col-md-10 col-12 mx-auto">
       <div class="row row-cols-sm-3">
         {{#each restaurants}}
-        <a href="/restaurants/{{this._id}}" class="text-secondary">
+        <div>
           <div class="card mb-3">
-            <img class="card-img-top" src="{{this.image}}"
-              alt="{{this.name}}">
+            <img class="card-img-top" src="{{this.image}}" alt="{{this.name}}">
             <div class="card-body p-3">
               <h6 class="card-title mb-1">{{this.name}}</h6>
 
@@ -39,8 +41,15 @@
               </span>
 
             </div>
+            <div class="card-footer py-3">
+            <a href="/">Edit</a>
+            <a href="/restaurants/{{ this._id }}">Details</a>
+            <button>Delete</button>
+            </div>
           </div>
-        </a>
+          
+        </div>
+
         {{/each}}
       </div>
     </div>

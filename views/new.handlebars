@@ -1,0 +1,42 @@
+<div class="container mt-5">
+  <form action="/restaurants" method="POST">
+    <div class="mb-3">
+      <label for="name" class="form-label">餐廳中文名稱</label>
+      <input type="text" class="form-control" id="name" name="name" placeholder="請輸入餐廳中文名稱" required>
+    </div>
+    <div class="mb-3">
+      <label for="name_en" class="form-label">餐廳英文名稱</label>
+      <input type="text" class="form-control" id="name_en" name="name_en" placeholder="請輸入餐廳英文名稱" required>
+    </div>    
+    <div class="mb-3">
+      <label for="category" class="form-label">餐廳類別</label>
+      <input type="text" class="form-control" id="category" name="category" placeholder="請輸入餐廳類別 ex: 日本料理..." required>
+    </div>
+    <div class="mb-3">
+      <label for="image" class="form-label">餐廳照片</label>
+      <input type="text" class="form-control" id="image" name="image" placeholder="請輸入餐廳照片網址" required>
+    </div>
+    <div class="mb-3">
+      <label for="location" class="form-label">餐廳地址</label>
+      <input type="text" class="form-control" id="location" name="location" placeholder="請輸入餐廳地址" required>
+    </div>
+    <div class="mb-3">
+      <label for="phone" class="form-label">餐廳電話</label>
+      <input type="text" class="form-control" id="phone" name="phone" placeholder="請輸入餐廳電話" required>
+    </div>
+    <div class="mb-3">
+      <label for="google_map" class="form-label">餐廳Google地圖連結</label>
+      <input type="text" class="form-control" id="google_map" name="google_map" placeholder="請輸入餐廳Google地圖連結" required>
+    </div>
+    <div class="mb-3">
+      <label for="rating" class="form-label">餐廳Google評分</label>
+      <input type="text" class="form-control" id="rating" name="rating" placeholder="請輸入餐廳Google評分" required>
+    </div>
+    <div class="mb-3">
+      <label for="description" class="form-label">餐廳描述</label>
+      <input type="text" class="form-control" id="description" name="description" placeholder="請輸入餐廳描述" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary">新增餐廳</button>
+  </form>
+</div>

@@ -30,10 +30,14 @@ db.once('open', () => {
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 
+// Set body-parser
+app.use(express.urlencoded({ extended: true }))
+
 // Set static files
 app.use(express.static('public'))
 
 // Set routes
+// 使用者可以瀏覽全部所有餐廳
 app.get('/', (req, res) => {
   // res.render('index', { restaurants: restaurantList.results})
   Restaurant.find() // 找出Restaurant model裡的所有資料
@@ -43,6 +47,19 @@ app.get('/', (req, res) => {
     .catch(error => console.log(error))
 })
 
+// 使用者可以新增一家餐廳
+app.get('/restaurants/new', (req, res) => {
+  res.render('new')
+})
+
+app.post('/restaurants', (req, res) => {
+  const newRestaurant = req.body
+  return Restaurant.create(newRestaurant)
+    .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
+})
+
+// 使用者可以瀏覽一家餐廳的詳細資訊
 app.get('/restaurants/:id', (req, res) => {
   // const restaurant = restaurantList.results.find(restaurant => restaurant.id.toString() === req.params.id)
   // res.render('show', { restaurant: restaurant})
@@ -53,6 +70,7 @@ app.get('/restaurants/:id', (req, res) => {
     .catch(error => console.log(error))
 })
 
+// 使用者可以依餐廳名稱或類別搜尋特定餐廳
 app.get('/search', (req, res) => {
   const keyword = req.query.keyword
   // const restaurants = restaurantList.results.filter(restaurants => restaurants.name.toLowerCase().includes(keyword.toLowerCase()) || restaurants.category.includes(keyword))
