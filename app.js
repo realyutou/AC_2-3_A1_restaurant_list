@@ -3,9 +3,9 @@ const express = require('express')
 const app = express()
 const port = 3000
 const exphbs = require('express-handlebars')
-// const restaurantList = require('./restaurant.json')
 const mongoose = require('mongoose')
 const Restaurant = require('./models/Restaurant')
+const methodOverride = require('method-override')
 
 // Require dotenv only in non-production environment
 if (process.env.NODE_ENV !== 'production') {
@@ -36,10 +36,12 @@ app.use(express.urlencoded({ extended: true }))
 // Set static files
 app.use(express.static('public'))
 
+// 設定每筆請求都會透過method-override進行前置處理
+app.use(methodOverride('_method'))
+
 // Set routes
 // 使用者可以瀏覽全部所有餐廳
 app.get('/', (req, res) => {
-  // res.render('index', { restaurants: restaurantList.results})
   Restaurant.find() // 找出Restaurant model裡的所有資料
     .lean() // 把Mongoose的Model物件轉換成乾淨的Javascript資料陣列
     .sort({ _id: 'asc' }) // 根據_id升冪排列，降冪排列為'desc'
@@ -61,8 +63,6 @@ app.post('/restaurants', (req, res) => {
 
 // 使用者可以瀏覽一家餐廳的詳細資訊
 app.get('/restaurants/:id', (req, res) => {
-  // const restaurant = restaurantList.results.find(restaurant => restaurant.id.toString() === req.params.id)
-  // res.render('show', { restaurant: restaurant})
   const id = req.params.id
   return Restaurant.findById(id)
     .lean()
@@ -79,7 +79,7 @@ app.get('/restaurants/:id/edit', (req, res) => {
     .catch(error => console.log(error))
 })
 
-app.post('/restaurants/:id/edit', (req, res) => {
+app.put('/restaurants/:id', (req, res) => {
   const id = req.params.id
   const { name, name_en, category, image, location, phone, google_map, rating, description } = req.body
   return Restaurant.findById(id)
@@ -100,7 +100,7 @@ app.post('/restaurants/:id/edit', (req, res) => {
 })
 
 // 使用者可以刪除一家餐廳
-app.post('/restaurants/:id/delete', (req, res) => {
+app.delete('/restaurants/:id', (req, res) => {
   const id = req.params.id
   return Restaurant.findById(id)
     .then(restaurant => restaurant.remove())
@@ -111,8 +111,6 @@ app.post('/restaurants/:id/delete', (req, res) => {
 // 使用者可以依餐廳名稱或類別搜尋特定餐廳
 app.get('/search', (req, res) => {
   const keyword = req.query.keyword
-  // const restaurants = restaurantList.results.filter(restaurants => restaurants.name.toLowerCase().includes(keyword.toLowerCase()) || restaurants.category.includes(keyword))
-  // res.render('index', { restaurants: restaurants, keyword: keyword })
   Restaurant.find()
     .lean()
     .sort({ _id: 'asc' })

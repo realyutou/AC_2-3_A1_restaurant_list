@@ -44,7 +44,7 @@
             <div class="card-footer py-3 text-end">
               <a href="/restaurants/{{ this._id }}/edit" class="d-inline-block pe-3 text-decoration-none">Edit</a>
               <a href="/restaurants/{{ this._id }}" class="d-inline-block pe-3 text-decoration-none">Details</a>
-              <form action="/restaurants/{{ this._id }}/delete" method="POST" style="display: inline"><button type="submit">Delete</button></form>
+              <form action="/restaurants/{{ this._id }}?_method=DELETE" method="POST" style="display: inline"><button type="submit">Delete</button></form>
             </div>
           </div>
 
