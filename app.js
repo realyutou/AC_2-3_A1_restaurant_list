@@ -3,28 +3,9 @@ const express = require('express')
 const app = express()
 const port = 3000
 const exphbs = require('express-handlebars')
-const mongoose = require('mongoose')
 const methodOverride = require('method-override')
 const routes = require('./routes')
-
-// Require dotenv only in non-production environment
-if (process.env.NODE_ENV !== 'production') {
-  require('dotenv').config()
-}
-
-// Set MongoDB connection
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-
-// Access MongoDB connecting situation
-const db = mongoose.connection
-
-db.on('error', () => {
-  console.log('MongoDB error!')
-})
-
-db.once('open', () => {
-  console.log('MongoDB connected!')
-})
+require('./config/mongoose')
 
 // Set templates engine
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
