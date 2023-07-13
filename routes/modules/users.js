@@ -10,6 +10,11 @@ router.get('/login', (req, res) => {
   res.render('login')
 })
 
+// 送出登入表單
+router.post('/login', (req, res) => {
+  
+})
+
 // 註冊頁面
 router.get('/register', (req, res) => {
   res.render('register')
