@@ -1,4 +1,4 @@
-// 此檔案為restaurant路由模組
+// 此檔案為restaurants路由模組
 
 // 載入Express與Express路由器
 const express = require('express')
