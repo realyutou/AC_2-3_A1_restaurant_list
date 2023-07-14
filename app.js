@@ -1,5 +1,6 @@
 // Include packages and define server related variables
 const express = require('express')
+const session = require('express-session')
 const app = express()
 const port = 3000
 const exphbs = require('express-handlebars')
@@ -10,6 +11,13 @@ require('./config/mongoose')
 // Set templates engine
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
+
+// Set express-session
+app.use(session({
+  secret: 'ThisIsMySecret',
+  resave: false,
+  saveUninitialized: true
+}))
 
 // Set body-parser
 app.use(express.urlencoded({ extended: true }))
