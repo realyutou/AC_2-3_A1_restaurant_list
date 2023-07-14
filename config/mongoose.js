@@ -1,11 +1,6 @@
 // Include mongoose
 const mongoose = require('mongoose')
 
-// Require dotenv only in non-production environment
-if (process.env.NODE_ENV !== 'production') {
-  require('dotenv').config()
-}
-
 // Set MongoDB connection
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
 

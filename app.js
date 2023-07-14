@@ -1,22 +1,25 @@
 // Include packages and define server related variables
 const express = require('express')
 const session = require('express-session')
-const app = express()
-const port = 3000
 const exphbs = require('express-handlebars')
 const methodOverride = require('method-override')
 const flash = require('connect-flash')
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+} // Require dotenv only in non-production environment
 const routes = require('./routes')
 const usePassport = require('./config/passport')
 require('./config/mongoose')
 
+const app = express()
+const PORT = process.env.PORT
 // Set templates engine
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 
 // Set express-session
 app.use(session({
-  secret: 'ThisIsMySecret',
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true
 }))
@@ -49,6 +52,6 @@ app.use((req, res, next) => {
 app.use(routes)
 
 // Start and listen the server
-app.listen(port, () => {
-  console.log(`The server is running on http://localhost:${port}`)
+app.listen(PORT, () => {
+  console.log(`The server is running on http://localhost:${PORT}`)
 })
