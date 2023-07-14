@@ -22,6 +22,12 @@ router.post('/login', passport.authenticate('local', {
   failureRedirect: '/users/login'
 }))
 
+// 登出功能
+router.get('/logout', (req, res) => {
+  req.logout()
+  res.redirect('/users/login')
+})
+
 // 註冊頁面
 router.get('/register', (req, res) => {
   res.render('register')
