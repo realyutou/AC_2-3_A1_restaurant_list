@@ -5,6 +5,7 @@ const app = express()
 const port = 3000
 const exphbs = require('express-handlebars')
 const methodOverride = require('method-override')
+const flash = require('connect-flash')
 const routes = require('./routes')
 const usePassport = require('./config/passport')
 require('./config/mongoose')
@@ -32,10 +33,15 @@ app.use(methodOverride('_method'))
 // 呼叫passport函式並傳入參數app
 usePassport(app)
 
+// Set connect-flash
+app.use(flash())
+
 // 將驗證資料傳入路由
 app.use((req, res, next) => {
   res.locals.isAuthenticated = req.isAuthenticated()
   res.locals.user = req.user
+  res.locals.success_msg = req.flash('success_msg')
+  res.locals.warning_msg = req.flash('warning_msg')
   next()
 })
 
