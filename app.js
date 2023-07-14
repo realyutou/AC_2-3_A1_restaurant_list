@@ -32,6 +32,13 @@ app.use(methodOverride('_method'))
 // 呼叫passport函式並傳入參數app
 usePassport(app)
 
+// 將驗證資料傳入路由
+app.use((req, res, next) => {
+  res.locals.isAuthenticated = req.isAuthenticated()
+  res.locals.user = req.user
+  next()
+})
+
 // 將request導入路由器
 app.use(routes)
 
