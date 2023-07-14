@@ -10,6 +10,9 @@ const User = require('../../models/User')
 // 引用passport
 const passport = require('passport')
 
+// 引用bcrypt
+const bcrypt = require('bcryptjs')
+
 // 定義users路由
 // 登入頁面
 router.get('/login', (req, res) => {
@@ -70,11 +73,14 @@ router.post('/register', (req, res) => {
         })
       }
       // 若無，新增註冊資料
-      return User.create({
-        name,
-        email,
-        password
-      })
+      return bcrypt
+        .genSalt(10)
+        .then(salt => bcrypt.hash(password, salt))
+        .then(hash => User.create({
+          name,
+          email,
+          password: hash
+        }))
         .then(() => res.redirect('/'))
         .catch(error => console.log(error))
     })
