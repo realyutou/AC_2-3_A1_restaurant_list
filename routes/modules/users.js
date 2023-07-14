@@ -7,6 +7,9 @@ const router = express.Router()
 // 載入User模組
 const User = require('../../models/User')
 
+// 引用passport
+const passport = require('passport')
+
 // 定義users路由
 // 登入頁面
 router.get('/login', (req, res) => {
@@ -14,9 +17,10 @@ router.get('/login', (req, res) => {
 })
 
 // 送出登入表單
-router.post('/login', (req, res) => {
-  
-})
+router.post('/login', passport.authenticate('local', {
+  successRedirect: '/',
+  failureRedirect: '/users/login'
+}))
 
 // 註冊頁面
 router.get('/register', (req, res) => {

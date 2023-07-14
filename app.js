@@ -6,6 +6,7 @@ const port = 3000
 const exphbs = require('express-handlebars')
 const methodOverride = require('method-override')
 const routes = require('./routes')
+const usePassport = require('./config/passport')
 require('./config/mongoose')
 
 // Set templates engine
@@ -27,6 +28,9 @@ app.use(express.static('public'))
 
 // 設定每筆請求都會透過method-override進行前置處理
 app.use(methodOverride('_method'))
+
+// 呼叫passport函式並傳入參數app
+usePassport(app)
 
 // 將request導入路由器
 app.use(routes)
