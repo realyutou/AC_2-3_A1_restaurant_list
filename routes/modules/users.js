@@ -44,10 +44,10 @@ router.post('/register', (req, res) => {
   // 建立錯誤訊息
   const errors = []
   if (!email || !password || !confirmPassword) {
-    errors.push({ message: '除了名字外，所有欄位都是必填！'})
+    errors.push({ message: '除了名字外，所有欄位都是必填！' })
   }
   if (password !== confirmPassword) {
-    errors.push({ message: '密碼與確認密碼不相符！'})
+    errors.push({ message: '密碼與確認密碼不相符！' })
   }
   if (errors.length) {
     return res.render('register', {

@@ -15,5 +15,5 @@ db.once('open', () => {
   console.log('MongoDB connected!')
 })
 
-//匯出mongoose模組
+// 匯出mongoose模組
 module.exports = db
