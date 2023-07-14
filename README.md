@@ -16,7 +16,7 @@
 2. Clone本專案至您的電腦：開啟終端機，進入欲存放本專案的資料夾路徑，輸入以下指令
 
 ```bash
-git clone https://github.com/realyutou/AC_2-3_A1_restaurant_list.git
+git clone https://github.com/realyutou/restaurant_list.git
 ```
 
 3. 安裝相關套件：輸入以下指令
